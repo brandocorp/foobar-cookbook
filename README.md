@@ -1,4 +1,3 @@
 # foobar
 
-TODO: Enter the cookbook description here.
-
+Installs and configures the Foo Bar application.
