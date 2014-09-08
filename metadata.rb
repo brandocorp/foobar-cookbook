@@ -11,4 +11,4 @@ attribute "foobar/home_dir",
   :description => "The location where the foobar application will be installed.",
   :required => "optional",
   :type => "string",
-  :default => "/opt/foobar",
+  :default => "/opt/foobar"
