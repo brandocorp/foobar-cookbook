@@ -5,9 +5,9 @@ require 'rubygems'
 require 'bundler'
 require 'bundler/cli'
 begin
-  Bundler::CLI.start(['install', '--quiet'])
+  Bundler::CLI.start(['install', '--clean'])
 rescue Bundler::GemNotFound
-  Bundler::CLI.start(['update', '--quiet'])
+  Bundler::CLI.start(['update', '--clean'])
 rescue Bundler::BundlerError
   retry
 end
