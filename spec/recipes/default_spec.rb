@@ -12,7 +12,7 @@ describe 'foobar::default' do
   end
 
   it 'creates the foobar default configuration file' do
-    expect(chef_run).to create_template('/etc/defaults/foobar')
+    expect(chef_run).to create_template('/etc/default/foobar')
   end
 
 end

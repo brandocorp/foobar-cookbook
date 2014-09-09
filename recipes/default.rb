@@ -19,7 +19,7 @@ directory node['foobar']['home_dir'] do
 end
 
 # the default configuration for the foobar application
-template '/etc/defaults/foobar' do
+template '/etc/default/foobar' do
   source 'foobar.erb'
   owner 'root'
   group 'root'
