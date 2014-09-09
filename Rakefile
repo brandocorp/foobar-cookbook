@@ -1,3 +1,6 @@
+require 'rake'
+require 'bundler'
+require 'bundler/cli'
 
 #
 #  Bundler Setup
@@ -7,15 +10,25 @@ task :bundler do
   require 'bundler'
   require 'bundler/cli'
   begin
-    Bundler::CLI.start(['install', '--clean'])
+    Bundler::CLI.start(['install'])
   rescue Bundler::GemNotFound
-    Bundler::CLI.start(['update', '--clean'])
+    Bundler::CLI.start(['update'])
   rescue Bundler::BundlerError
     retry
   end
   Gem.clear_paths
 end
 
+
+# Try loading our other libs, and run bundler if we fail
+begin
+  require 'foodcritic'
+  require 'rubocop'
+  require 'rspec/core/rake_task'
+rescue LoadError
+  Rake::Task[:bundler].execute
+  retry
+end
 
 #
 # Foodcritic
