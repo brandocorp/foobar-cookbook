@@ -7,7 +7,19 @@ provisioner:
 
 platforms:
   - name: centos-6.5
-
+    driver:
+      box: chef/centos-6.5
+  - name: centos-7.0
+    driver:
+      box: chef/centos-7.0
+  - name: rhel-6.5
+    driver:
+      box: rhel-6.5
+      box_url: https://mpr.apollogrp.edu/vagrant/rhel-6.5-x86_64.box
+  - name: rhel-7.0
+    driver:
+      box: rhel-7.0
+      box_url: https://mpr.apollogrp.edu/vagrant/rhel-7.0-x86_64.box
 suites:
   - name: default
     run_list:
