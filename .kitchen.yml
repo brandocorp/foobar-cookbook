@@ -21,7 +21,21 @@ platforms:
       box: rhel-7.0
       box_url: https://mpr.apollogrp.edu/vagrant/rhel-7.0-x86_64.box
 suites:
-  - name: default
+  - name: cent-default
     run_list:
       - recipe[foobar::default]
     attributes:
+  - name: rhel-default
+    run_list:
+      - recipe[rhn]
+      - recipe[foobar::default]
+    attributes:
+      rhn:
+        ssl: false
+        activation_keys: 2-a-rh6-x86_64-prod
+        hostname: plaxrhns301.apollogrp.edu
+        org_ca_cert:
+          name: RHN-ORG-TRUSTED-SSL-CERT
+    excludes:
+      - centos-6.5
+      - centos-7.0
