@@ -1,6 +1,8 @@
 ---
 driver:
   name: vagrant
+  network:
+    - ["private_network", {ip: "192.168.33.33"}]
 
 provisioner:
   name: chef_solo
@@ -16,26 +18,11 @@ platforms:
     driver:
       box: rhel-6.5
       box_url: https://mpr.apollogrp.edu/vagrant/rhel-6.5-x86_64.box
-  - name: rhel-7.0
-    driver:
-      box: rhel-7.0
-      box_url: https://mpr.apollogrp.edu/vagrant/rhel-7.0-x86_64.box
+      vagrantfile_erb: "./test/fixtures/vagrantfiles/default-rhel.erb"
+      satellite:
+        enable: true
 suites:
-  - name: cent-default
+  - name: default
     run_list:
       - recipe[foobar::default]
     attributes:
-  - name: rhel-default
-    run_list:
-      - recipe[rhn]
-      - recipe[foobar::default]
-    attributes:
-      rhn:
-        ssl: false
-        activation_keys: 2-a-rh6-x86_64-prod
-        hostname: plaxrhns301.apollogrp.edu
-        org_ca_cert:
-          name: RHN-ORG-TRUSTED-SSL-CERT
-    excludes:
-      - centos-6.5
-      - centos-7.0

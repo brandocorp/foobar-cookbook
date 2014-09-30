@@ -9,8 +9,6 @@ version          '0.1.0'
 supports 'centos', '>= 5.9'
 supports 'redhat', '>= 5.9'
 
-depends 'rhn'
-
 attribute "foobar/home_dir",
   :display_name => "Installation Directory",
   :description => "The location where the foobar application will be installed.",

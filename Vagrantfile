@@ -16,13 +16,16 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   # Set the version of chef to install using the vagrant-omnibus plugin
   config.omnibus.chef_version = :latest
 
+  # enable satellite registration
+  config.satellite.enable = true
+
   # Every Vagrant virtual environment requires a box to build off of.
-  # If this value is a shorthand to a box in Vagrant Cloud then 
+  # If this value is a shorthand to a box in Vagrant Cloud then
   # config.vm.box_url doesn't need to be specified.
-  config.vm.box = "opscode-centos-6.4"
+  config.vm.box = "rhel-6.5"
 
   # The url from where the 'config.vm.box' box will be fetched if it
-  # is not a Vagrant Cloud box and if it doesn't already exist on the 
+  # is not a Vagrant Cloud box and if it doesn't already exist on the
   # user's system.
   # config.vm.box_url = "https://opscode-vm-bento.s3.amazonaws.com/vagrant/virtualbox/opscode_centos-6.4_chef-provisionerless.box"
 
@@ -71,5 +74,8 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   # An array of symbols representing groups of cookbook described in the Vagrantfile
   # to skip installing and copying to Vagrant's shelf.
   # config.berkshelf.except = []
-
+  config.vm.provision :chef_solo do |chef|
+    chef.json = {}
+    chef.run_list = ["recipe[foobar::default]"]
+  end
 end
